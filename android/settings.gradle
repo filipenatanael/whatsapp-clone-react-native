@@ -1,0 +1,3 @@
+rootProject.name = 'WhatsappCloneInReactNative'
+
+include ':app'
