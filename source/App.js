@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import LoginScreen from './components/LoginScreen';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+import Routes from './Routes';
+import reducers from './reducers/index';
 
 export default class App extends Component<{}> {
   render() {
     return (
-      <LoginScreen />
+      <Provider store={createStore(reducers)}>
+        <Routes />
+      </Provider>
     );
   }
 }

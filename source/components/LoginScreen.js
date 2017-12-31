@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 export default class LoginScreen extends Component {
   render() {
@@ -18,7 +19,9 @@ export default class LoginScreen extends Component {
             placeholder='Password:'
             style={styles.textInput}
             />
+            <TouchableHighlight onPress={() => Actions.signUpScreen()}>
             <Text style={styles.textRegister}>New to Whatsapp? Sign up now »</Text>
+            </TouchableHighlight>
          </View>
 
          <View style={styles.btnLogIn}>
