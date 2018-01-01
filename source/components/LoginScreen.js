@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { addEmail } from '../actions/AuthActions';
+import { addEmail, addPassword } from '../actions/AuthActions';
 
 class LoginScreen extends Component {
   render() {
@@ -21,6 +21,7 @@ class LoginScreen extends Component {
             />
             <TextInput
             value={this.props.password}
+            onChangeText={password => this.props.addPassword(password)}
             placeholder='Password:'
             style={styles.textInput}
             />
@@ -44,7 +45,7 @@ const mapStateToProps = state => (
   }
 )
 
-export default connect(mapStateToProps, { addEmail })(LoginScreen);
+export default connect(mapStateToProps, { addEmail, addPassword })(LoginScreen);
 
 const styles = StyleSheet.create({
     container: {

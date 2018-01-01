@@ -4,3 +4,10 @@ export const addEmail = (email) => {
     payload: email
   }
 }
+
+export const addPassword = (password) => {
+  return {
+    type: 'ADD_PASSWORD',
+    payload: password
+  }
+}
