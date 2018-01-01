@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 
-export default class LoginScreen extends Component {
+class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -12,10 +13,12 @@ export default class LoginScreen extends Component {
 
          <View style={styles.formGroup}>
             <TextInput
+            value={this.props.email}
             placeholder='Email:'
             style={styles.textInput}
             />
             <TextInput
+            value={this.props.password}
             placeholder='Password:'
             style={styles.textInput}
             />
@@ -31,6 +34,15 @@ export default class LoginScreen extends Component {
     );
   }
 }
+
+const mapsStateToProps = state => (
+  {
+    email: state.AuthReducer.email,
+    password: state.AuthReducer.password,
+  }
+)
+
+export default connect(mapsStateToProps, null)(LoginScreen);
 
 const styles = StyleSheet.create({
     container: {
