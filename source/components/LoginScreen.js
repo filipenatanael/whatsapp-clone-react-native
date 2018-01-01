@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
+import { addEmail, addPassword } from '../actions/AuthActions';
 
-export default class LoginScreen extends Component {
+class LoginScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -12,10 +14,14 @@ export default class LoginScreen extends Component {
 
          <View style={styles.formGroup}>
             <TextInput
+            value={this.props.email}
+            onChangeText={email => this.props.addEmail(email)}
             placeholder='Email:'
             style={styles.textInput}
             />
             <TextInput
+            value={this.props.password}
+            onChangeText={password => this.props.addPassword(password)}
             placeholder='Password:'
             style={styles.textInput}
             />
@@ -31,6 +37,15 @@ export default class LoginScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = state => (
+  {
+    email: state.AuthReducer.email,
+    password: state.AuthReducer.password,
+  }
+)
+
+export default connect(mapStateToProps, { addEmail, addPassword })(LoginScreen);
 
 const styles = StyleSheet.create({
     container: {
