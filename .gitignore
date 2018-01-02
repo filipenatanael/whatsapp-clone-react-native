@@ -51,3 +51,8 @@ buck-out/
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
+
+# My Configuration
+#
+# Ignore firebase config
+WhatsappCloneInReactNative/source/resources/MyFirebaseSettings.js

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight, ImageBackground } from 'react-native';
+import * as Constants from '../resources/constants';
+
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
 import { addEmail, addPassword } from '../actions/AuthActions';
@@ -7,9 +9,10 @@ import { addEmail, addPassword } from '../actions/AuthActions';
 class LoginScreen extends Component {
   render() {
     return (
+  <ImageBackground source={require('../images/LogInBackground.jpg')} style={{ flex: 1, width: null }}>
       <View style={styles.container}>
          <View style={styles.title}>
-            <Text style={styles.textTitle}>Whatsapp Clone</Text>
+            <Text style={styles.textTitle}>{ Constants.app_name }</Text>
          </View>
 
          <View style={styles.formGroup}>
@@ -17,12 +20,14 @@ class LoginScreen extends Component {
             value={this.props.email}
             onChangeText={email => this.props.addEmail(email)}
             placeholder='Email:'
+            placeholderTextColor='#fff'
             style={styles.textInput}
             />
             <TextInput
             value={this.props.password}
             onChangeText={password => this.props.addPassword(password)}
             placeholder='Password:'
+            placeholderTextColor='#fff'
             style={styles.textInput}
             />
             <TouchableHighlight onPress={() => Actions.signUpScreen()}>
@@ -34,6 +39,7 @@ class LoginScreen extends Component {
             <Button title="Log in" color='green' onPress={() => false} />
          </View>
       </View>
+    </ImageBackground>
     );
   }
 }
@@ -58,7 +64,8 @@ const styles = StyleSheet.create({
       alignItems: 'center'
     },
     textTitle: {
-     fontSize: 30
+     fontSize: 30,
+     color: '#fff'
     },
     formGroup: {
       flex: 2,
@@ -68,7 +75,8 @@ const styles = StyleSheet.create({
       height: 45
     },
     textRegister: {
-      fontSize: 16
+      fontSize: 16,
+      color: '#A0A0A0'
     },
     btnLogIn: {
       flex: 2,
