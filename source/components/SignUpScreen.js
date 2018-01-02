@@ -1,20 +1,47 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
+import { addName, addEmail, addPassword, registerUser } from '../actions/AuthActions';
 
 class SignUpScreen extends Component {
+
+  _registerUser() {
+    const { name, email, password } = this.props;
+    this.props.registerUser({ name, email, password });
+  }
+
   render() {
     return (
+      <ImageBackground source={require('../images/LogInBackground.jpg')} style={{ flex: 1, width: null }}>
       <View style={styles.container}>
          <View style={styles.formGroup}>
-            <TextInput placeholder='Name:' style={styles.textInput} value={this.props.name} />
-            <TextInput placeholder='Email:' style={styles.textInput} value={this.props.email} />
-            <TextInput placeholder='Password:' style={styles.textInput} value={this.props.password} />
+            <TextInput
+            placeholder='Name:'
+            placeholderTextColor='#fff'
+            style={styles.textInput}
+            value={this.props.name}
+            onChangeText={name => this.props.addName(name)}
+            />
+            <TextInput
+            placeholder='Email:'
+            placeholderTextColor='#fff'
+            style={styles.textInput}
+            value={this.props.email}
+            onChangeText={email => this.props.addEmail(email)}
+            />
+            <TextInput
+            placeholder='Password:'
+            placeholderTextColor='#fff'
+            style={styles.textInput}
+            value={this.props.password}
+            onChangeText={password => this.props.addPassword(password)}
+            />
          </View>
          <View style={styles.btnSignUp}>
-            <Button title="SignUp" color='green' onPress={() => false} />
+            <Button title="SignUp" color='green' onPress={() => this._registerUser()} />
          </View>
       </View>
+      </ImageBackground>
     );
   }
 }
@@ -27,7 +54,15 @@ const mapStateToProps = state => (
   }
 )
 
-export default connect(mapStateToProps, null)(SignUpScreen);
+export default connect(
+  mapStateToProps,
+  {
+    addName,
+    addEmail,
+    addPassword,
+    registerUser
+  }
+)(SignUpScreen);
 
 const styles = StyleSheet.create({
    container: {
