@@ -1,7 +1,8 @@
 const INITIAL_STATE = {
-  name: 'John',
-  email: 'John@testing.com',
-  password: 'John@2018'
+  name: '',
+  email: '',
+  password: '',
+  message: ''
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -10,6 +11,10 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, email: action.payload }
     case 'ADD_PASSWORD':
       return { ...state, password: action.payload }
+    case 'ADD_NAME':
+      return { ...state, name: action.payload }
+    case 'FAILURE_REGISTER':
+        return { ...state, message: action.payload }
     default:
       return state;
   }
