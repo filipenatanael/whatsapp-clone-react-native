@@ -8,7 +8,7 @@ export default props => (
   <Router>
   <Scene key='app'>
   <Scene key='loginScreen' component={LoginScreen} title="Login" />
-  <Scene key='signUpScreen' component={SignUpScreen} title="SignUp" />
+  <Scene key='signUpScreen' component={SignUpScreen} title="SignUp" initial />
   </Scene>
   </Router>
 );

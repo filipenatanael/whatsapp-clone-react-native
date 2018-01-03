@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, StyleSheet, ImageBackground } from 'react-native';
+import { View, TextInput, Button, StyleSheet, ImageBackground, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { addName, addEmail, addPassword, registerUser } from '../actions/AuthActions';
 
@@ -15,6 +15,9 @@ class SignUpScreen extends Component {
       <ImageBackground source={require('../images/LogInBackground.jpg')} style={{ flex: 1, width: null }}>
       <View style={styles.container}>
          <View style={styles.formGroup}>
+
+            <Text style={{ fontSize: 20, color: 'red' }}>{ this.props.message }</Text>
+
             <TextInput
             placeholder='Name:'
             placeholderTextColor='#fff'
@@ -50,7 +53,8 @@ const mapStateToProps = state => (
   {
     name: state.AuthReducer.name,
     email: state.AuthReducer.email,
-    password: state.AuthReducer.password
+    password: state.AuthReducer.password,
+    message: state.AuthReducer.message
   }
 )
 

@@ -21,20 +21,17 @@ export const addPassword = (password) => {
 
 
 export const registerUser = ({ name, email, password }) => {
-
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then(user => successfully())
-  .catch(error => unsuccessful(error))
-}
-
-const successfully = () => {
-  return {
-    type: 'Success'
+  return dispatch => {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then(user => successfully(dispatch))
+    .catch(error => unsuccessful(error, dispatch))
   }
 }
 
-const unsuccessful = (error) => {
-  return {
-    type: 'Error'
-  }
+const successfully = (dispatch) => {
+  dispatch({ type: 'SUCCESS_REGISTER' })
+}
+
+const unsuccessful = (error, dispatch) => {
+  dispatch({ type: 'FAILURE_REGISTER', payload: error.message })
 }
