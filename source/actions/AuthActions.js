@@ -66,7 +66,7 @@ export const registerUser = ({ name, email, password }) => {
 
 const registerSuccess = (dispatch) => {
   dispatch({ type: 'SUCCESS_REGISTER' });
-  Actions.mainScreen();
+  Actions.welcomeScreen();
 }
 
 const registerUnsuccess = (error, dispatch) => {
