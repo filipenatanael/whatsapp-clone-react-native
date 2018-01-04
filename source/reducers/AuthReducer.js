@@ -1,3 +1,5 @@
+import * as Messages from '../resources/messages';
+
 const INITIAL_STATE = {
   name: '',
   email: '',
@@ -14,7 +16,18 @@ export default (state = INITIAL_STATE, action) => {
     case 'ADD_NAME':
       return { ...state, name: action.payload }
     case 'FAILURE_REGISTER':
-        return { ...state, message: action.payload }
+        switch (action.payload) {
+          case 'auth/invalid-email':
+          return { ...state, message: Messages.invalid_email }
+          case 'auth/user-disabled':
+          return { ...state, message: Messages.user_disabled }
+          case 'auth/user-not-found':
+          return { ...state, message: Messages.user_not_found }
+          case 'auth/wrong-password':
+          return { ...state, message: Messages.wrong_password }
+          default:
+            return { ...state, message: Messages.undefined_register_error }
+        }
     default:
       return state;
   }

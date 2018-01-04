@@ -33,5 +33,5 @@ const successfully = (dispatch) => {
 }
 
 const unsuccessful = (error, dispatch) => {
-  dispatch({ type: 'FAILURE_REGISTER', payload: error.message })
+  dispatch({ type: 'FAILURE_REGISTER', payload: error.code })
 }
