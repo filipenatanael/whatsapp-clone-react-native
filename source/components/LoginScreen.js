@@ -4,9 +4,15 @@ import * as Constants from '../resources/constants';
 
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { addEmail, addPassword } from '../actions/AuthActions';
+import { addEmail, addPassword, SignIN } from '../actions/AuthActions';
 
 class LoginScreen extends Component {
+
+  _SignIN() {
+    const { email, password } = this.props;
+    this.props.SignIN({ email, password });
+  }
+
   render() {
     return (
   <ImageBackground source={require('../images/LogInBackground.jpg')} style={{ flex: 1, width: null }}>
@@ -36,7 +42,7 @@ class LoginScreen extends Component {
          </View>
 
          <View style={styles.btnLogIn}>
-            <Button title="Log in" color='green' onPress={() => false} />
+            <Button title="Log in" color='green' onPress={() => this._SignIN()} />
          </View>
       </View>
     </ImageBackground>
@@ -51,7 +57,7 @@ const mapStateToProps = state => (
   }
 )
 
-export default connect(mapStateToProps, { addEmail, addPassword })(LoginScreen);
+export default connect(mapStateToProps, { addEmail, addPassword, SignIN })(LoginScreen);
 
 const styles = StyleSheet.create({
     container: {
