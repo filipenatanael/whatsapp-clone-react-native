@@ -21,8 +21,12 @@ class LoginScreen extends Component {
             <Text style={styles.textTitle}>{ Strings.app_name }</Text>
          </View>
 
+         <View style={{ flex: 1 }}>
+           <Text style={{ fontSize: 20, color: 'red' }}>{ this.props.message }</Text>
+         </View>
+
          <View style={styles.formGroup}>
-            <Text style={{ fontSize: 20, color: 'red' }}>{ this.props.message }</Text>
+
 
             <TextInput
             value={this.props.email}
@@ -30,6 +34,8 @@ class LoginScreen extends Component {
             placeholder='Email:'
             placeholderTextColor='#fff'
             style={styles.textInput}
+            returnKeyType="next"
+            onSubmitEditing={() => this.passwordInput.focus()}
             />
             <TextInput
             value={this.props.password}
@@ -37,6 +43,8 @@ class LoginScreen extends Component {
             placeholder='Password:'
             placeholderTextColor='#fff'
             style={styles.textInput}
+            returnKeyType="go"
+            ref={(input) => this.passwordInput = input}
             />
             <TouchableHighlight onPress={() => Actions.signUpScreen()}>
             <Text style={styles.textRegister}>New to Whatsapp? Sign up now »</Text>
@@ -88,6 +96,6 @@ const styles = StyleSheet.create({
       color: '#A0A0A0'
     },
     btnLogIn: {
-      flex: 2,
+      flex: 1,
     }
 });
