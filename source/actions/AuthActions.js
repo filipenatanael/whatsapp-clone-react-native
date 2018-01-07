@@ -25,6 +25,7 @@ export const addPassword = (password) => {
   }
 }
 
+
 /*
 ActionCreator to signIn on application
 */

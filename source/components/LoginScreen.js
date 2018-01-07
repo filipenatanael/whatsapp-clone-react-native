@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight, ImageBackground } from 'react-native';
-import * as Constants from '../resources/constants';
+import * as Strings from '../resources/strings';
 
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -18,16 +18,24 @@ class LoginScreen extends Component {
   <ImageBackground source={require('../images/LogInBackground.jpg')} style={{ flex: 1, width: null }}>
       <View style={styles.container}>
          <View style={styles.title}>
-            <Text style={styles.textTitle}>{ Constants.app_name }</Text>
+            <Text style={styles.textTitle}>{ Strings.app_name }</Text>
+         </View>
+
+         <View style={{ flex: 1 }}>
+           <Text style={{ fontSize: 20, color: 'red' }}>{ this.props.message }</Text>
          </View>
 
          <View style={styles.formGroup}>
+
+
             <TextInput
             value={this.props.email}
             onChangeText={email => this.props.addEmail(email)}
             placeholder='Email:'
             placeholderTextColor='#fff'
             style={styles.textInput}
+            returnKeyType="next"
+            onSubmitEditing={() => this.passwordInput.focus()}
             />
             <TextInput
             value={this.props.password}
@@ -35,6 +43,8 @@ class LoginScreen extends Component {
             placeholder='Password:'
             placeholderTextColor='#fff'
             style={styles.textInput}
+            returnKeyType="go"
+            ref={(input) => this.passwordInput = input}
             />
             <TouchableHighlight onPress={() => Actions.signUpScreen()}>
             <Text style={styles.textRegister}>New to Whatsapp? Sign up now »</Text>
@@ -54,6 +64,7 @@ const mapStateToProps = state => (
   {
     email: state.AuthReducer.email,
     password: state.AuthReducer.password,
+    message: state.AuthReducer.message
   }
 )
 
@@ -85,6 +96,6 @@ const styles = StyleSheet.create({
       color: '#A0A0A0'
     },
     btnLogIn: {
-      flex: 2,
+      flex: 1,
     }
 });
