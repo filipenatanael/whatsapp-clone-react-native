@@ -16,7 +16,8 @@ export default (state = INITIAL_STATE, action) => {
     case 'ADD_NAME':
     return { ...state, name: action.payload }
     case 'FAILURE_REGISTER':
-    switch (action.payload) {
+    switch (action.payload)
+    {
       case 'auth/email-already-in-use':
       return { ...state, message: Messages.email_already_in_use }
       case 'auth/invalid-email':
@@ -30,6 +31,22 @@ export default (state = INITIAL_STATE, action) => {
     }
     case 'SUCCESS_REGISTER':
     return { ...state, name: '' }
+    case 'AUTH_SUCCESS':
+    return { ...state, email: '', password: '' }
+    case 'AUTH_FAILURE':
+    switch (action.payload)
+    {
+      case 'auth/invalid-email':
+      return { ...state, message: Messages.invalid_email }
+      case 'auth/user-disabled':
+      return { ...state, message: Messages.user_disabled }
+      case 'auth/user-not-found':
+      return { ...state, message: Messages.user_not_found }
+      case 'auth/wrong-password':
+      return { ...state, message: Messages.wrong_password }
+      default:
+      return { ...state, message: Messages.undefined_register_error }
+    }
     default:
     return state;
   }

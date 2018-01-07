@@ -13,6 +13,7 @@ export default class MainScreen extends Component {
 
       <View style={{ flex: 1 }}>
       <Button title='Checking Status' onPress={() => alert('Welcome! You are logged.')} />
+      <Button title='Sign Out' onPress={() => Actions.loginScreen()} />
       </View>
 
       </View>

@@ -22,6 +22,8 @@ class LoginScreen extends Component {
          </View>
 
          <View style={styles.formGroup}>
+            <Text style={{ fontSize: 20, color: 'red' }}>{ this.props.message }</Text>
+
             <TextInput
             value={this.props.email}
             onChangeText={email => this.props.addEmail(email)}
@@ -54,6 +56,7 @@ const mapStateToProps = state => (
   {
     email: state.AuthReducer.email,
     password: state.AuthReducer.password,
+    message: state.AuthReducer.message
   }
 )
 
