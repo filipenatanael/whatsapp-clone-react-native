@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight, ImageBackground } from 'react-native';
-import * as Constants from '../resources/constants';
+import * as Strings from '../resources/strings';
 
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
@@ -18,7 +18,7 @@ class LoginScreen extends Component {
   <ImageBackground source={require('../images/LogInBackground.jpg')} style={{ flex: 1, width: null }}>
       <View style={styles.container}>
          <View style={styles.title}>
-            <Text style={styles.textTitle}>{ Constants.app_name }</Text>
+            <Text style={styles.textTitle}>{ Strings.app_name }</Text>
          </View>
 
          <View style={styles.formGroup}>
