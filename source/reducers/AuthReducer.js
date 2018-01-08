@@ -1,4 +1,5 @@
 import * as Constants from '../resources/constants';
+import * as types from '../actions/Types';
 
 const INITIAL_STATE = {
   name: '',
@@ -9,13 +10,13 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case 'ADD_EMAIL':
+    case types.ADD_EMAIL:
     return { ...state, email: action.payload }
-    case 'ADD_PASSWORD':
+    case types.ADD_PASSWORD:
     return { ...state, password: action.payload }
-    case 'ADD_NAME':
+    case types.ADD_NAME:
     return { ...state, name: action.payload }
-    case 'FAILURE_REGISTER':
+    case types.FAILURE_REGISTER:
     switch (action.payload)
     {
       case 'auth/email-already-in-use':
@@ -29,11 +30,11 @@ export default (state = INITIAL_STATE, action) => {
       default:
       return { ...state, message: Constants.undefined_register_error }
     }
-    case 'SUCCESS_REGISTER':
+    case types.SUCCESS_REGISTER:
     return { ...state, name: '' }
-    case 'AUTH_SUCCESS':
+    case types.AUTH_SUCCESS:
     return { ...state, email: '', password: '' }
-    case 'AUTH_FAILURE':
+    case types.AUTH_FAILURE:
     switch (action.payload)
     {
       case 'auth/invalid-email':

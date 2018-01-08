@@ -31,9 +31,9 @@ export default class Routes extends Component {
       return <View><Text>Loading...</Text></View>;
     }
     return (
-      <Router>
+      <Router navigationBarStyle={{ backgroundColor: '#115E54' }} titleStyle={{ color: 'white' }}>
       <Scene key='app'>
-      <Scene key='loginScreen' component={LoginScreen} title="Login" initial={!this.state.logged} />
+      <Scene key='loginScreen' component={LoginScreen} title="Login" hideNavBar={true} initial={!this.state.logged} />
       <Scene key='signUpScreen' component={SignUpScreen} title="SignUp" />
       <Scene key='mainScreen' component={MainScreen} title="MainScreen" initial={this.state.logged} />
       <Scene key='welcomeScreen' component={WelcomeScreen} title="WelcomeScreen" />
