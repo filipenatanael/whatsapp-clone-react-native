@@ -7,9 +7,6 @@ import SignUpScreen from './components/SignUpScreen';
 import MainScreen from './components/MainScreen';
 import WelcomeScreen from './components/WelcomeScreen';
 
-
-const loadingCount = true;
-
 export default class Routes extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +27,7 @@ export default class Routes extends Component {
     });
   }
 
-  renderAcessButton() {
+  renderAcessRoutes() {
     return (
       <ActivityIndicator size="large" color="#00ff00" />
     )
@@ -40,7 +37,7 @@ export default class Routes extends Component {
     if (this.state.loading) {
       return (
         <View style={[styles.container, styles.horizontal]}>
-        { this.renderAcessButton() }
+        { this.renderAcessRoutes() }
         </View>
       );
     }

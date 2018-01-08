@@ -33,6 +33,8 @@ ActionCreator to signIn on application
 */
 export const SignIN = ({ email, password }) => {
   return dispatch => {
+    dispatch({ type: types.SIGN_IN_LOADING })
+
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(response => {
       const TOKEN_KEY = response.refreshToken;

@@ -5,7 +5,8 @@ const INITIAL_STATE = {
   name: '',
   email: '',
   password: '',
-  message: ''
+  message: '',
+  signInLoading: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -38,16 +39,18 @@ export default (state = INITIAL_STATE, action) => {
     switch (action.payload)
     {
       case 'auth/invalid-email':
-      return { ...state, message: Constants.invalid_email }
+      return { ...state, message: Constants.invalid_email, signInLoading: false }
       case 'auth/user-disabled':
-      return { ...state, message: Constants.user_disabled }
+      return { ...state, message: Constants.user_disabled, signInLoading: false }
       case 'auth/user-not-found':
-      return { ...state, message: Constants.user_not_found }
+      return { ...state, message: Constants.user_not_found, signInLoading: false }
       case 'auth/wrong-password':
-      return { ...state, message: Constants.wrong_password }
+      return { ...state, message: Constants.wrong_password, signInLoading: false }
       default:
-      return { ...state, message: Constants.undefined_register_error }
+      return { ...state, message: Constants.undefined_register_error, signInLoading: false }
     }
+    case types.SIGN_IN_LOADING:
+    return { ...state, signInLoading: true }
     default:
     return state;
   }
