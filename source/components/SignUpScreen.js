@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, StyleSheet, ImageBackground, Text } from 'react-native';
+import { View, TextInput, Button, StyleSheet, ImageBackground, Text, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { addName, addEmail, addPassword, registerUser } from '../actions/AuthActions';
 
@@ -8,6 +8,13 @@ class SignUpScreen extends Component {
   _registerUser() {
     const { name, email, password } = this.props;
     this.props.registerUser({ name, email, password });
+  }
+
+  renderRegisterButton() {
+    if (this.props.signUpLoading) {
+      return (<ActivityIndicator size="large" color="#00ff00" />)
+    }
+    return (<Button title="SignUp" color='green' onPress={() => this._registerUser()} />)
   }
 
   render() {
@@ -41,7 +48,7 @@ class SignUpScreen extends Component {
             />
          </View>
          <View style={styles.btnSignUp}>
-            <Button title="SignUp" color='green' onPress={() => this._registerUser()} />
+              { this.renderRegisterButton() }
          </View>
       </View>
       </ImageBackground>
@@ -54,7 +61,8 @@ const mapStateToProps = state => (
     name: state.AuthReducer.name,
     email: state.AuthReducer.email,
     password: state.AuthReducer.password,
-    message: state.AuthReducer.message
+    message: state.AuthReducer.message,
+    signUpLoading: state.AuthReducer.signUpLoading
   }
 )
 

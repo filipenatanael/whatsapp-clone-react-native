@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight, ImageBackground } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight, ImageBackground, ActivityIndicator } from 'react-native';
 import * as Strings from '../resources/strings';
 
 import { Actions } from 'react-native-router-flux';
@@ -11,6 +11,13 @@ class LoginScreen extends Component {
   _SignIN() {
     const { email, password } = this.props;
     this.props.SignIN({ email, password });
+  }
+
+  renderAcessButton() {
+    if (this.props.signInLoading) {
+      return (<ActivityIndicator size="large" color="#00ff00" />)
+    }
+    return (<Button title="Log in" color='green' onPress={() => this._SignIN()} />)
   }
 
   render() {
@@ -52,7 +59,7 @@ class LoginScreen extends Component {
          </View>
 
          <View style={styles.btnLogIn}>
-            <Button title="Log in" color='green' onPress={() => this._SignIN()} />
+            { this.renderAcessButton() }
          </View>
       </View>
     </ImageBackground>
@@ -64,7 +71,8 @@ const mapStateToProps = state => (
   {
     email: state.AuthReducer.email,
     password: state.AuthReducer.password,
-    message: state.AuthReducer.message
+    message: state.AuthReducer.message,
+    signInLoading: state.AuthReducer.signInLoading
   }
 )
 

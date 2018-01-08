@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, AsyncStorage } from 'react-native';
+import { View, AsyncStorage, StyleSheet, ActivityIndicator } from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
 
 import LoginScreen from './components/LoginScreen';
@@ -26,14 +26,25 @@ export default class Routes extends Component {
       }
     });
   }
+
+  renderAcessRoutes() {
+    return (
+      <ActivityIndicator size="large" color="#00ff00" />
+    )
+  }
+
   render() {
     if (this.state.loading) {
-      return <View><Text>Loading...</Text></View>;
+      return (
+        <View style={[styles.container, styles.horizontal]}>
+        { this.renderAcessRoutes() }
+        </View>
+      );
     }
     return (
-      <Router>
+      <Router navigationBarStyle={{ backgroundColor: '#115E54' }} titleStyle={{ color: 'white' }}>
       <Scene key='app'>
-      <Scene key='loginScreen' component={LoginScreen} title="Login" initial={!this.state.logged} />
+      <Scene key='loginScreen' component={LoginScreen} title="Login" hideNavBar={true} initial={!this.state.logged} />
       <Scene key='signUpScreen' component={SignUpScreen} title="SignUp" />
       <Scene key='mainScreen' component={MainScreen} title="MainScreen" initial={this.state.logged} />
       <Scene key='welcomeScreen' component={WelcomeScreen} title="WelcomeScreen" />
@@ -42,3 +53,15 @@ export default class Routes extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+  horizontal: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10
+  }
+})
