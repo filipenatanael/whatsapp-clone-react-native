@@ -58,6 +58,8 @@ ActionCreator to create new user registration
 */
 export const registerUser = ({ name, email, password }) => {
   return dispatch => {
+    dispatch({ type: types.SIGN_UP_LOADING })
+
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(response => {
       let EmailEncode = base64.encode(email);

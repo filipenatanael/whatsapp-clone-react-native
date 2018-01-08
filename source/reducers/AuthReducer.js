@@ -6,7 +6,8 @@ const INITIAL_STATE = {
   email: '',
   password: '',
   message: '',
-  signInLoading: false
+  signInLoading: false,
+  signUpLoading: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -21,15 +22,15 @@ export default (state = INITIAL_STATE, action) => {
     switch (action.payload)
     {
       case 'auth/email-already-in-use':
-      return { ...state, message: Constants.email_already_in_use }
+      return { ...state, message: Constants.email_already_in_use, signUpLoading: false }
       case 'auth/invalid-email':
-      return { ...state, message: Constants.invalid_email }
+      return { ...state, message: Constants.invalid_email, signUpLoading: false }
       case 'auth/operation-not-allowed':
-      return { ...state, message: Constants.operation_not_allowed }
+      return { ...state, message: Constants.operation_not_allowed, signUpLoading: false }
       case 'auth/weak-password':
-      return { ...state, message: Constants.weak_password }
+      return { ...state, message: Constants.weak_password, signUpLoading: false }
       default:
-      return { ...state, message: Constants.undefined_register_error }
+      return { ...state, message: Constants.undefined_register_error, signUpLoading: false }
     }
     case types.SUCCESS_REGISTER:
     return { ...state, name: '' }
@@ -51,6 +52,8 @@ export default (state = INITIAL_STATE, action) => {
     }
     case types.SIGN_IN_LOADING:
     return { ...state, signInLoading: true }
+    case types.SIGN_UP_LOADING:
+    return { ...state, signUpLoading: true }
     default:
     return state;
   }

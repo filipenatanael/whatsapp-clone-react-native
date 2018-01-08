@@ -14,7 +14,7 @@ class LoginScreen extends Component {
   }
 
   renderAcessButton() {
-    if(this.props.signInLoading) {
+    if (this.props.signInLoading) {
       return (<ActivityIndicator size="large" color="#00ff00" />)
     }
     return (<Button title="Log in" color='green' onPress={() => this._SignIN()} />)
