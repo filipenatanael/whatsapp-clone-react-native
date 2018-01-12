@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, StatusBar, Image } from 'react-native';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 
-import CameraScane from './CameraScane';
 import ChatsScane from './ChatsScene';
 import StatusScane from './StatusScene';
 import CallsScane from './CallsScane';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const TAB_BAR_WIDTH = (90 * SCREEN_WIDTH) / 100; //90% of screen
+const CAMERA_WIDTH = (10 * SCREEN_WIDTH) / 100; //10% of screen
 
 const initialLayout = {
   height: 0,
@@ -17,10 +20,9 @@ export default class MainScreen extends Component {
   state = {
     index: 0,
     routes: [
-      { key: 'first', title: '' },
-      { key: 'second', title: 'CHATS' },
-      { key: 'third', title: 'STATUS' },
-      { key: 'fourth', title: 'CALLS' },
+      { key: 'first', title: 'CHATS' },
+      { key: 'second', title: 'STATUS' },
+      { key: 'third', title: 'CALLS' },
     ],
   };
 
@@ -29,10 +31,9 @@ export default class MainScreen extends Component {
   _renderHeader = props => <TabBarMenu {...props} />;
 
   _renderScene = SceneMap({
-    first: CameraScane,
-    second: ChatsScane,
-    third: StatusScane,
-    fourth: CallsScane,
+    first: ChatsScane,
+    second: StatusScane,
+    third: CallsScane,
   });
 
   render() {
@@ -54,15 +55,25 @@ export default class MainScreen extends Component {
 class TabBarMenu extends Component {
   render() {
     return (
-      <View style={{ backgroundColor: '#115E54', elevation: 4, marginBottom: 6 }}>
-
+      <View style={{ backgroundColor: '#115E54', elevation: 3, marginBottom: 3 }}>
       <StatusBar backgroundColor="#114D44" />
 
       <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ color: 'white', fontSize: 18 }}>Whatsapp Clone</Text>
+      <Text style={{ color: 'white', fontSize: 18 }}>Whatsapp</Text>
       </View>
 
-      <TabBar {...this.props} style={{ backgroundColor: '#115E54' }} />
+      <View style={{ flexDirection: 'row' }}>
+
+      <View style={{ width: CAMERA_WIDTH, justifyContent: 'center', alignItems: 'center' }}>
+      <Image source={require('../images/PhotoCameraIcon.png')} style={{ height: 20, width: 20 }} />
+      </View>
+
+      <View style={{ alignItems: 'flex-end' }}>
+      <TabBar {...this.props} style={{ width: TAB_BAR_WIDTH, elevation: 0, backgroundColor: '#115E54' }} />
+      </View>
+
+      </View>
+
       </View>
     );
   }
