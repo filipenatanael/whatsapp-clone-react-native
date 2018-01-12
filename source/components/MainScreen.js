@@ -1,32 +1,38 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, StatusBar } from 'react-native';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 
+import CameraScane from './CameraScane';
+import ChatsScane from './ChatsScene';
+import StatusScane from './StatusScene';
+import CallsScane from './CallsScane';
 
 const initialLayout = {
   height: 0,
   width: Dimensions.get('window').width,
 };
 
-const ChatsRoute = () => <View style={[styles.container, { backgroundColor: '#ff4081' }]} />;
-const StatusRoute = () => <View style={[styles.container, { backgroundColor: '#673ab7' }]} />;
 
 export default class MainScreen extends Component {
   state = {
     index: 0,
     routes: [
-      { key: 'first', title: 'CHATS' },
-      { key: 'second', title: 'STATUS' },
+      { key: 'first', title: '' },
+      { key: 'second', title: 'CHATS' },
+      { key: 'third', title: 'STATUS' },
+      { key: 'fourth', title: 'CALLS' },
     ],
   };
 
   _handleIndexChange = index => this.setState({ index });
 
-  _renderHeader = props => <TabBar {...props} />;
+  _renderHeader = props => <TabBarMenu {...props} />;
 
   _renderScene = SceneMap({
-    first: ChatsRoute,
-    second: StatusRoute,
+    first: CameraScane,
+    second: ChatsScane,
+    third: StatusScane,
+    fourth: CallsScane,
   });
 
   render() {
@@ -44,18 +50,23 @@ export default class MainScreen extends Component {
 }
 
 
-class ClassName extends Component{
+
+class TabBarMenu extends Component {
   render() {
     return (
-      <View>
-        <Text>Whatsapp Clone</Text>
-        <TabBat { ...props }/>
-      <View>
-    )
+      <View style={{ backgroundColor: '#115E54', elevation: 4, marginBottom: 6 }}>
+
+      <StatusBar backgroundColor="#114D44" />
+
+      <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{ color: 'white', fontSize: 18 }}>Whatsapp Clone</Text>
+      </View>
+
+      <TabBar {...this.props} style={{ backgroundColor: '#115E54' }} />
+      </View>
+    );
   }
 }
-
-
 
 
 const styles = StyleSheet.create({
