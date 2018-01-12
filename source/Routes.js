@@ -46,7 +46,7 @@ export default class Routes extends Component {
       <Scene key='app'>
       <Scene key='loginScreen' component={LoginScreen} title="Login" hideNavBar={true} initial={!this.state.logged} />
       <Scene key='signUpScreen' component={SignUpScreen} title="SignUp" />
-      <Scene key='mainScreen' component={MainScreen} title="MainScreen" initial={this.state.logged} />
+      <Scene key='mainScreen' component={MainScreen} title="MainScreen" hideNavBar={true} initial={this.state.logged} />
       <Scene key='welcomeScreen' component={WelcomeScreen} title="WelcomeScreen" />
       </Scene>
       </Router>
