@@ -6,7 +6,7 @@ import LoginScreen from './components/LoginScreen';
 import SignUpScreen from './components/SignUpScreen';
 import MainScreen from './components/MainScreen';
 import WelcomeScreen from './components/WelcomeScreen';
-import AddContact from './components/AddContact';
+import AddContactScreen from './components/AddContactScreen';
 
 export default class Routes extends Component {
   constructor(props) {
@@ -49,7 +49,7 @@ export default class Routes extends Component {
       <Scene key='signUpScreen' component={SignUpScreen} title="SignUp" />
       <Scene key='mainScreen' component={MainScreen} title="MainScreen" hideNavBar={true} initial={this.state.logged} />
       <Scene key='welcomeScreen' component={WelcomeScreen} title="WelcomeScreen" />
-      <Scene key='addContact' component={AddContact} title="Add Contact" />
+      <Scene key='addContactScreen' component={AddContactScreen} title="Add Contact" />
       </Scene>
       </Router>
     )

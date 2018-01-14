@@ -1,13 +1,18 @@
 import React from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { addContact } from '../actions/AppActions';
 
-export default props => (
+//export default props => ()
+
+const AddContactScreen = props => (
   <View style={styles.container}>
       <View style={styles.formGroup}>
         <TextInput
         placeholder='Email'
         style={{ fontSize: 18, height: 40 }}
-        onChange={() => false}
+        value={props.contactEmail}
+        onChangeText={(email) => props.addContact(email)}
         />
       </View>
 
@@ -16,6 +21,15 @@ export default props => (
       </View>
   </View>
 );
+
+
+const mapStateToProps = state => (
+  {
+    contactEmail: state.AppReducer.emailContact,
+  }
+);
+
+export default connect(mapStateToProps, { addContact })(AddContactScreen);
 
 
 const styles = StyleSheet.create({
