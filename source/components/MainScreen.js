@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, StatusBar, Image, TouchableOpacity } from 'react-native';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import { Actions } from 'react-native-router-flux';
 
 import ChatsScane from './ChatsScene';
 import StatusScane from './StatusScene';
@@ -65,7 +66,9 @@ class TabBarMenu extends Component {
           </View>
           <View style={{ flexDirection: 'row', marginRight: 20 }}>
               <View style={{ width: 35, justifyContent: 'center' }}>
+              <TouchableOpacity onPress={() => Actions.addContact()}>
               <Image source={require('../images/ic_add_contact.png')} />
+              </TouchableOpacity>
               </View>
               <View style={{ justifyContent: 'center' }}>
               <Text style={{ fontSize: 18, color: 'white' }}>SingOut</Text>
