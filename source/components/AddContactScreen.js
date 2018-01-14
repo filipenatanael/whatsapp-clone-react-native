@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { addContact } from '../actions/AppActions';
+import { addContact, registerNewContact } from '../actions/AppActions';
 
 //export default props => ()
 
@@ -17,7 +17,10 @@ const AddContactScreen = props => (
       </View>
 
       <View style={styles.btnSeed}>
-        <Button title="Seed" onPress={() => false} />
+        <Button
+        title="Seed"
+        onPress={() => props.registerNewContact(props.contactEmail)} 
+        />
       </View>
   </View>
 );
@@ -29,7 +32,7 @@ const mapStateToProps = state => (
   }
 );
 
-export default connect(mapStateToProps, { addContact })(AddContactScreen);
+export default connect(mapStateToProps, { addContact, registerNewContact })(AddContactScreen);
 
 
 const styles = StyleSheet.create({

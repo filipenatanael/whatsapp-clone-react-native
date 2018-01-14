@@ -6,3 +6,11 @@ export const addContact = (email) => {
     payload: email
   }
 }
+
+
+export const registerNewContact = (email) => {
+  console.log(email);
+  return {
+    type: ''
+  }
+}
