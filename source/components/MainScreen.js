@@ -59,24 +59,30 @@ class TabBarMenu extends Component {
       <View style={{ backgroundColor: '#115E54', elevation: 3, marginBottom: 3 }}>
       <StatusBar backgroundColor="#114D44" />
 
-      <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ color: 'white', fontSize: 18 }}>Whatsapp</Text>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View style={{ height: 50, justifyContent: 'center', marginLeft: 20 }}>
+              <Text style={{ color: 'white', fontSize: 18 }}>Whatsapp</Text>
+          </View>
+          <View style={{ flexDirection: 'row', marginRight: 20 }}>
+              <View style={{ width: 35, justifyContent: 'center' }}>
+              <Image source={require('../images/ic_add_contact.png')} />
+              </View>
+              <View style={{ justifyContent: 'center' }}>
+              <Text style={{ fontSize: 18, color: 'white' }}>SingOut</Text>
+              </View>
+          </View>
       </View>
 
       <View style={{ flexDirection: 'row' }}>
-
-      <View style={{ width: CAMERA_WIDTH, justifyContent: 'center', alignItems: 'center' }}>
-      <TouchableOpacity onPress={() => alert('this is a camera!')}>
-      <Image source={require('../images/PhotoCameraIcon.png')} style={{ height: 20, width: 20 }} />
-      </TouchableOpacity>
+          <View style={{ width: CAMERA_WIDTH, justifyContent: 'center', alignItems: 'center' }}>
+            <TouchableOpacity onPress={() => alert('this is a camera!')}>
+            <Image source={require('../images/ic_photo_camera.png')} style={{ height: 20, width: 20 }} />
+            </TouchableOpacity>
+          </View>
+          <View style={{ alignItems: 'flex-end' }}>
+            <TabBar {...this.props} style={{ width: TAB_BAR_WIDTH, elevation: 0, backgroundColor: '#115E54' }} indicatorStyle={{ width: TAB_AND_INDICATOR_WIDTH }} tabStyle={{ width: TAB_AND_INDICATOR_WIDTH }} />
+          </View>
       </View>
-
-      <View style={{ alignItems: 'flex-end' }}>
-      <TabBar {...this.props} style={{ width: TAB_BAR_WIDTH, elevation: 0, backgroundColor: '#115E54' }} indicatorStyle={{ width: TAB_AND_INDICATOR_WIDTH }} tabStyle={{ width: TAB_AND_INDICATOR_WIDTH }} />
-      </View>
-
-      </View>
-
       </View>
     );
   }
