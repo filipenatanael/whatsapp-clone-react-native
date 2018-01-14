@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Dimensions, StatusBar, Image } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, StatusBar, Image, TouchableOpacity } from 'react-native';
 import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
 
 import ChatsScane from './ChatsScene';
@@ -8,6 +8,7 @@ import CallsScane from './CallsScane';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const TAB_BAR_WIDTH = (90 * SCREEN_WIDTH) / 100; //90% of screen
+const TAB_AND_INDICATOR_WIDTH = TAB_BAR_WIDTH / 3;
 const CAMERA_WIDTH = (10 * SCREEN_WIDTH) / 100; //10% of screen
 
 const initialLayout = {
@@ -65,11 +66,13 @@ class TabBarMenu extends Component {
       <View style={{ flexDirection: 'row' }}>
 
       <View style={{ width: CAMERA_WIDTH, justifyContent: 'center', alignItems: 'center' }}>
+      <TouchableOpacity onPress={() => alert('this is a camera!')}>
       <Image source={require('../images/PhotoCameraIcon.png')} style={{ height: 20, width: 20 }} />
+      </TouchableOpacity>
       </View>
 
       <View style={{ alignItems: 'flex-end' }}>
-      <TabBar {...this.props} style={{ width: TAB_BAR_WIDTH, elevation: 0, backgroundColor: '#115E54' }} />
+      <TabBar {...this.props} style={{ width: TAB_BAR_WIDTH, elevation: 0, backgroundColor: '#115E54' }} indicatorStyle={{ width: TAB_AND_INDICATOR_WIDTH }} tabStyle={{ width: TAB_AND_INDICATOR_WIDTH }} />
       </View>
 
       </View>
