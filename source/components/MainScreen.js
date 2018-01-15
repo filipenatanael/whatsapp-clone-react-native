@@ -66,7 +66,7 @@ class TabBarMenu extends Component {
           </View>
           <View style={{ flexDirection: 'row', marginRight: 20 }}>
               <View style={{ width: 35, justifyContent: 'center' }}>
-              <TouchableOpacity onPress={() => Actions.addContact()}>
+              <TouchableOpacity onPress={() => Actions.addContactScreen()}>
               <Image source={require('../images/ic_add_contact.png')} />
               </TouchableOpacity>
               </View>
