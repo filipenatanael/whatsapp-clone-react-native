@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { addContact, registerNewContact } from '../actions/AppActions';
 
@@ -19,8 +19,11 @@ const AddContactScreen = props => (
       <View style={styles.btnSeed}>
         <Button
         title="Seed"
-        onPress={() => props.registerNewContact(props.contactEmail)} 
+        onPress={() => props.registerNewContact(props.contactEmail)}
         />
+        <View style={{ marginTop: 10, alignItems: 'center' }}>
+        <Text style={{ fontSize: 18, color: 'red' }}>{ props.addContactError }</Text>
+        </View>
       </View>
   </View>
 );
@@ -29,6 +32,7 @@ const AddContactScreen = props => (
 const mapStateToProps = state => (
   {
     contactEmail: state.AppReducer.emailContact,
+    addContactError: state.AppReducer.addContactError
   }
 );
 
