@@ -44,13 +44,13 @@ export default class Routes extends Component {
     }
     return (
       <Router navigationBarStyle={{ backgroundColor: '#115E54' }} titleStyle={{ color: 'white' }}>
-      <Scene key='app'>
-      <Scene key='loginScreen' component={LoginScreen} title="Login" hideNavBar={true} initial={!this.state.logged} />
-      <Scene key='signUpScreen' component={SignUpScreen} title="SignUp" />
-      <Scene key='mainScreen' component={MainScreen} title="MainScreen" hideNavBar={true} initial={this.state.logged} />
-      <Scene key='welcomeScreen' component={WelcomeScreen} title="WelcomeScreen" />
-      <Scene key='addContactScreen' component={AddContactScreen} title="Add Contact" />
-      </Scene>
+        <Scene key='app'>
+          <Scene key='loginScreen' component={LoginScreen} title="Login" hideNavBar={true} initial={!this.state.logged} />
+          <Scene key='signUpScreen' component={SignUpScreen} title="SignUp" />
+          <Scene key='mainScreen' component={MainScreen} title="MainScreen" hideNavBar={true} initial={this.state.logged} />
+          <Scene key='welcomeScreen' component={WelcomeScreen} title="WelcomeScreen" />
+          <Scene key='addContactScreen' component={AddContactScreen} title="Add Contact" />
+        </Scene>
       </Router>
     )
   }
