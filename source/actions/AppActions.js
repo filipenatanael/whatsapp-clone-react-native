@@ -17,7 +17,20 @@ export const registerNewContact = (email) => {
     .once('value')
     .then(snapshot => {
       if (snapshot.val()) {
-        dispatch({ type: types.ADD_CONTACT_ERROR, payload: 'User exists!' })
+        /* dispatch({ type: types.ADD_CONTACT_ERROR, payload: 'User exists!' }) */
+
+        /* Guest email for new contact */
+        console.log(email);
+
+        /* Currently authenticated user */
+        const { currentUser } = firebase.auth();
+        let currentEmailB64 = base64.encode(currentUser.email);
+
+        firebase.database().ref(`/users_of_contacts/${currentEmailB64}`)
+               .push({ email, name: 'Name of new contacts' })
+               .then(() => console.log('Success!!!'))
+               .catch(error => console.log(error))
+
       } else {
         dispatch({ type: types.ADD_CONTACT_ERROR, payload: 'The user does not exist!' })
       }
