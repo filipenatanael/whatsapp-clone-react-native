@@ -28,7 +28,7 @@ export const registerNewContact = (email) => {
 
         firebase.database().ref(`/users_of_contacts/${currentEmailB64}`)
                .push({ email, name: userData.name })
-               .then(() => console.log('Success!!!'))
+               .then(() => registerNewContactSuccess(dispatch))
                .catch(error => registerNewContactError(error, dispatch))
       } else {
         dispatch({ type: types.ADD_CONTACT_ERROR, payload: '[App] The user does not exist!' })
@@ -44,4 +44,32 @@ const registerNewContactError = (error, dispatch) => {
         payload: error.message
       }
     );
+}
+
+const registerNewContactSuccess = dispatch => (
+  dispatch(
+  {
+      type: types.ADD_CONTACT_SUCCESS,
+      payload: true
+  })
+)
+
+export const enableInclusionContact = () => (
+  {
+    type: types.ADD_CONTACT_SUCCESS,
+    payload: false
+  }
+)
+
+
+export const userContactsFetch = () => {
+  const { currentUser } = firebase.auth();
+  return (dispatch) => {
+    let currentEmailB64 = base64.encode(currentUser);
+
+    firebase.database().ref(`/users_of_contacts/${currentEmailB64}`)
+    .on("value", snapshot => {
+      dispatch({ type: types.LIST_USER_CONTACTS, payload: snapshot.val() })
+    })
+  }
 }
