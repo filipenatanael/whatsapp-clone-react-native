@@ -54,9 +54,22 @@ const registerNewContactSuccess = dispatch => (
   })
 )
 
-export const enableNewContactButton = () => (
+export const enableInclusionContact = () => (
   {
     type: types.ADD_CONTACT_SUCCESS,
     payload: false
   }
 )
+
+
+export const userContactsFetch = () => {
+  const { currentUser } = firebase.auth();
+  return (dispatch) => {
+    let currentEmailB64 = base64.encode(currentUser);
+
+    firebase.database().ref(`/users_of_contacts/${currentEmailB64}`)
+    .on("value", snapshot => {
+      dispatch({ type: types.LIST_USER_CONTACTS, payload: snapshot.val() })
+    })
+  }
+}

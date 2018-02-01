@@ -3,7 +3,7 @@ import { View, Text, Dimensions, StatusBar, Image, TouchableOpacity } from 'reac
 import { TabBar } from 'react-native-tab-view';
 import { Actions } from 'react-native-router-flux';
 import { connect } from 'react-redux';
-import { enableNewContactButton } from '../actions/AppActions';
+import { enableInclusionContact } from '../actions/AppActions';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const TAB_BAR_WIDTH = (90 * SCREEN_WIDTH) / 100; //90% of screen
@@ -23,7 +23,7 @@ class TabBarMenu extends Component {
 
           <View style={{ flexDirection: 'row', marginRight: 20 }}>
             <View style={{ width: 35, justifyContent: 'center' }}>
-                <TouchableOpacity onPress={() => { Actions.addContactScreen(); this.props.enableNewContactButton(); }}>
+                <TouchableOpacity onPress={() => { Actions.addContactScreen(); this.props.enableInclusionContact(); }}>
                     <Image source={require('../images/ic_add_contact.png')} />
                 </TouchableOpacity>
             </View>
@@ -49,4 +49,4 @@ class TabBarMenu extends Component {
   }
 }
 
-export default connect(null, { enableNewContactButton })(TabBarMenu);
+export default connect(null, { enableInclusionContact })(TabBarMenu);
