@@ -49,6 +49,14 @@ const registerNewContactError = (error, dispatch) => {
 const registerNewContactSuccess = dispatch => (
   dispatch(
   {
-      type: types.ADD_CONTACT_SUCCESS
+      type: types.ADD_CONTACT_SUCCESS,
+      payload: true
   })
+)
+
+export const enableNewContactButton = () => (
+  {
+    type: types.ADD_CONTACT_SUCCESS,
+    payload: false
+  }
 )
