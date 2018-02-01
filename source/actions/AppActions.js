@@ -28,7 +28,7 @@ export const registerNewContact = (email) => {
 
         firebase.database().ref(`/users_of_contacts/${currentEmailB64}`)
                .push({ email, name: userData.name })
-               .then(() => console.log('Success!!!'))
+               .then(() => registerNewContactSuccess(dispatch))
                .catch(error => registerNewContactError(error, dispatch))
       } else {
         dispatch({ type: types.ADD_CONTACT_ERROR, payload: '[App] The user does not exist!' })
@@ -45,3 +45,10 @@ const registerNewContactError = (error, dispatch) => {
       }
     );
 }
+
+const registerNewContactSuccess = dispatch => (
+  dispatch(
+  {
+      type: types.ADD_CONTACT_SUCCESS
+  })
+)
