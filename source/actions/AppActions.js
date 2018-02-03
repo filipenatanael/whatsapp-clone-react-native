@@ -62,15 +62,13 @@ export const enableInclusionContact = () => (
 )
 
 
-export const userContactsFetch = () => {
+export const userContactsFetch = (myEmail) => {
   const { currentUser } = firebase.auth();
-
   return (dispatch) => {
-    console.log('ATUAL: ', currentUser.email);
-    let currentEmailB64 = base64.encode(currentUser);
+    let currentEmailB64 = base64.encode(myEmail);
     firebase.database().ref(`/users_of_contacts/${currentEmailB64}`)
     .on("value", snapshot => {
-      console.log(snapshot.val());
+      console.log('ScapShotVal: ', snapshot.val());
       dispatch({ type: types.LIST_USER_CONTACTS, payload: snapshot.val() })
     })
   }
