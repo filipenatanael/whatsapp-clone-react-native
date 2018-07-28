@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 export default props => (
-  <View style={styles.Container}>
+  <View style={styles.container}>
 
   <View>
   <Text style={{ fontSize: 50 }}>Whatsapp Chats</Text>
@@ -15,24 +15,21 @@ export default props => (
   <Text style={{ fontSize: 50 }}>Whatsapp Chats</Text>
   </View>
 
-  <TouchableOpacity activeOpacity={0.5} onPress={() => alert('Clicked!!')} style={styles.TouchableOpacityStyle} >
-  <Image source={require('../images/ic_chats_contacts.png')} style={styles.FloatingButtonStyle} />
+  <TouchableOpacity activeOpacity={0.5} onPress={() => alert('Clicked!!')} style={styles.touchableOpacityStyle} >
+  <Image source={require('../images/ic_chats_contacts.png')} style={styles.floatingButtonStyle} />
   </TouchableOpacity>
 
   </View>
 )
 
 const styles = StyleSheet.create({
-
-  Container: {
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor : '#F5F5F5'
   },
-
-  TouchableOpacityStyle:{
-
+  touchableOpacityStyle:{
     position: 'absolute',
     width: 55,
     height: 55,
@@ -41,9 +38,7 @@ const styles = StyleSheet.create({
     right: 30,
     bottom: 30,
   },
-
-  FloatingButtonStyle: {
-
+  floatingButtonStyle: {
     resizeMode: 'contain',
     width: 55,
     height: 55,
