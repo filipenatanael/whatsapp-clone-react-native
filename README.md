@@ -1,2 +1,1 @@
-# Whatsapp-clone-react-native
-WhatApp Clone Using React Native
+# WhatApp Clone Using React Native
