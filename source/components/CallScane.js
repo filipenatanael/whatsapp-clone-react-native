@@ -30,10 +30,10 @@ class CallScane extends Component {
       enableEmptySections
       dataSource={this.dataSource}
       renderRow={data => {
-        console.log(data);
-        return (<View>
-          <Text>{ data.name }</Text>
-          <Text>{ data.email }</Text>
+        return (
+          <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: "#b7b7b7" }}>
+            <Text style={{ fontSize: 23, fontWeight: 'bold' }}>{ data.name }</Text>
+            <Text>{ data.email }</Text>
           </View>
         )
       }
