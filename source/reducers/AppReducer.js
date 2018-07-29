@@ -1,6 +1,7 @@
 import * as types from '../actions/Types';
 
 const INITIAL_STATE = {
+  email_logged_in: 'filipenatanael1@live.com',
   email_contact: 'Testing@example.com',
   add_contact_error: '',
   add_contact_status: false,
