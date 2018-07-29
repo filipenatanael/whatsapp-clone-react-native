@@ -61,14 +61,10 @@ const registerNewContactSuccess = dispatch => (
     }
   )
 
-  export const fetchContacts = (myEmail) => {
-    const { currentUser } = firebase.auth();
-
+  export const fetchContacts = (emailLoggedIn) => {
     return (dispatch) => {
-      let currentEmailB64 = base64.encode(myEmail);
-      firebase.database().ref(`/users_of_contacts/${currentEmailB64}`)
+      firebase.database().ref(`/users_of_contacts/${emailLoggedIn}`)
       .on("value", snapshot => {
-        console.log('ScapShotVal: ', snapshot.val());
         dispatch({ type: type.CONTACTS_LIST, payload: snapshot.val() })
       })
     }
