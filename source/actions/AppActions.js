@@ -65,7 +65,10 @@ const registerNewContactSuccess = dispatch => (
     return (dispatch) => {
       firebase.database().ref(`/users_of_contacts/${emailLoggedIn}`)
       .on("value", snapshot => {
-        dispatch({ type: type.CONTACTS_LIST, payload: snapshot.val() })
+        dispatch({
+          type: type.CONTACTS_LIST,
+          payload: snapshot.val()
+        })
       })
     }
   }
