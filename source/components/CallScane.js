@@ -2,7 +2,7 @@ import firebase from 'firebase';
 import React, { Component } from 'react';
 import base64 from 'base-64';
 import _ from 'lodash';
-import { View, Text, ListView } from 'react-native';
+import { View, Text, ListView, Image } from 'react-native';
 
 import { connect } from 'react-redux';
 import { fetchContacts } from '../actions/AppActions'
@@ -32,6 +32,7 @@ class CallScane extends Component {
       renderRow={data => {
         return (
           <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: "#b7b7b7" }}>
+            <Image source={{uri: data.profileImage }} style={{ width: 70, height: 70 }} />
             <Text style={{ fontSize: 23, fontWeight: 'bold' }}>{ data.name }</Text>
             <Text>{ data.email }</Text>
           </View>
