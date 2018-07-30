@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import React, { Component } from 'react';
+import { Actions } from 'react-native-router-flux';
 import base64 from 'base-64';
 import _ from 'lodash';
 import { View, Text, ListView, Image, TouchableHighlight } from 'react-native';
@@ -27,7 +28,7 @@ class CallScane extends Component {
   renderRow(contact) {
     return (
       <TouchableHighlight
-        onPress={ () => false }
+        onPress={ () => Actions.chat() }
       >
       <View style={{ flex: 1,  flexDirection: 'row', padding: 15, borderBottomWidth: 1, borderColor: "#b7b7b7" }}>
         <Image source={{uri: contact.profileImage }} style={{ width: 50, height: 50 }} />
