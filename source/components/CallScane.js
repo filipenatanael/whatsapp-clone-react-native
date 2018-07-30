@@ -2,7 +2,7 @@ import firebase from 'firebase';
 import React, { Component } from 'react';
 import base64 from 'base-64';
 import _ from 'lodash';
-import { View, Text, ListView, Image } from 'react-native';
+import { View, Text, ListView, Image, TouchableHighlight } from 'react-native';
 
 import { connect } from 'react-redux';
 import { fetchContacts } from '../actions/AppActions'
@@ -24,21 +24,28 @@ class CallScane extends Component {
     // CallScane.prototype.dataSource (example)
   }
 
+  renderRow(contact) {
+    return (
+      <TouchableHighlight
+        onPress={ () => false }
+      >
+      <View style={{ flex: 1,  flexDirection: 'row', padding: 15, borderBottomWidth: 1, borderColor: "#b7b7b7" }}>
+        <Image source={{uri: contact.profileImage }} style={{ width: 50, height: 50 }} />
+          <View style={{ marginLeft: 15 }}>
+            <Text style={{ fontSize: 23, fontWeight: 'bold' }}>{ contact.name }</Text>
+            <Text style={{ fontSize: 13 }}>{ contact.email }</Text>
+          </View>
+      </View>
+      </TouchableHighlight>
+    )
+  }
+
   render() {
     return (
       <ListView
       enableEmptySections
       dataSource={this.dataSource}
-      renderRow={data => {
-        return (
-          <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: "#b7b7b7" }}>
-            <Image source={{uri: data.profileImage }} style={{ width: 70, height: 70 }} />
-            <Text style={{ fontSize: 23, fontWeight: 'bold' }}>{ data.name }</Text>
-            <Text>{ data.email }</Text>
-          </View>
-        )
-      }
-    }
+      renderRow={data => this.renderRow(data)}
     />
   );
 }
