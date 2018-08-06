@@ -9,7 +9,6 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-  console.log(action);
    switch (action.type) {
      case type.ADD_CONTACT:
         return { ...state, email_contact: action.payload }
