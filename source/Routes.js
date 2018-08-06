@@ -18,8 +18,8 @@ export default class Routes extends Component {
     };
   }
 
-  componentWillMount() {
-    AsyncStorage.getItem('@mytoken:key')
+componentWillMount() {
+  AsyncStorage.getItem('@mytoken:key')
     .then((token) => {
       if (token != null) {
         this.setState({ logged: true, loading: false, });
