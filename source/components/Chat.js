@@ -4,7 +4,6 @@ import { View, Text, TextInput, Image, TouchableHighlight } from 'react-native';
 import { changeMessage, sendMessage } from '../actions/AppActions';
 
 class Chat extends Component {
-
   /* Component Context */
   _sendMessage() {
     const { message, contactName, contactEmail } = this.props;
