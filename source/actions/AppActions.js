@@ -72,3 +72,34 @@ const registerNewContactSuccess = dispatch => (
       })
     }
   }
+
+  /* Chat component message */
+  export const changeMessage = text => {
+    return ({
+      type: type.CHANGE_MESSAGE,
+      payload: text
+    })
+
+  }
+  export const sendMessage = (message, contactName, contactEmail) => {
+    // User information
+    const { currentUser } = firebase.auth();
+    const userEmail = currentUser.email;
+
+    return dispatch => {
+      // Contact information
+
+      // Convert to base64
+      const user_email_encode = base64.encode(userEmail);
+      const contact_email_encode = base64.encode(contactEmail);
+
+      // Push to firebase (send and receive)
+      firebase.database().ref(`/messages/${user_email_encode}/${contact_email_encode}`)
+      .push({ message: message, type: 'send' })
+      .then(() => {
+        firebase.database().ref(`/messages/${contact_email_encode}/${user_email_encode}`)
+        .push({ message: message, type: 'receive' })
+        .then(() => dispatch({ type: 'SEND_MESSAGE' }))
+      })
+    }
+  }
