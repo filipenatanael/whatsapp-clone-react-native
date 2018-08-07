@@ -62,6 +62,10 @@ const registerNewContactSuccess = dispatch => (
   )
 
   export const fetchContacts = (emailLoggedIn) => {
+    /* A solução sera ao carregar a aplicação, atualizar o emailLoggedIn  no AppReducer para que aplicação não quebre
+        devido ao componentWillMount tentar passar um valor inexistente, fazer um função que que buscar o currentUser e
+        da dispatch atualizando na store e deixar o email = ''... assim qunado tiver retorno atualizar os contatos
+    */
     return (dispatch) => {
       firebase.database().ref(`/users_of_contacts/${emailLoggedIn}`)
       .on("value", snapshot => {
@@ -81,6 +85,7 @@ const registerNewContactSuccess = dispatch => (
     })
 
   }
+
   export const sendMessage = (message, contactName, contactEmail) => {
     // User information
     const { currentUser } = firebase.auth();
@@ -100,6 +105,37 @@ const registerNewContactSuccess = dispatch => (
         firebase.database().ref(`/messages/${contact_email_encode}/${user_email_encode}`)
         .push({ message: message, type: 'receive' })
         .then(() => dispatch({ type: 'SEND_MESSAGE' }))
+
+      }).then(() => { // Store header user conversations
+        firebase.database().ref(`/user_conversations/${user_email_encode}/${contact_email_encode}`)
+        .set({ name: contactName, email: contactEmail })
+      }).then(() => { // Store header contact conversations
+
+        firebase.database().ref(`/users/${user_email_encode}`)
+        .once('value')
+        .then(snapshot => {
+
+          const dataUser = _.first(_.values(snapshot.val()))
+
+          firebase.database().ref(`/user_conversations/${contact_email_encode}/${user_email_encode}`)
+          set({ name: dataUser.name, name: userEmail })
+        })
+
+      })
+    }
+  }
+
+  /* List Conversation */
+
+  export const userConversationFetch = contactEmail => {
+    const { currentUser } = firebase.auth();
+    let user_email_encode = base64.encode(currentUser.email);
+    let contact_email_encode = base64.encode(contactEmail);
+
+    return dispatch => {
+      firebase.database().ref(`/messages/${user_email_encode}/${contact_email_encode}`)
+      .on('value', snapshot => {
+        dispatch({ type: type.LIST_CONVERSATION_USER, payload: snapshot.val() })
       })
     }
   }
