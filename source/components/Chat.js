@@ -28,10 +28,23 @@ class Chat extends Component {
   }
 
   renderRow(text) {
+
+    if (text.type === 'send') {
+      return (
+        <View style={{ alignItems: 'flex-end', marginTop: 5, marginLeft: 40, marginBottom: 5 }}>
+          <View style={{ backgroundColor: '#dbf5b4', borderRadius: 10 }}>
+          <Text style={{ fontSize: 16, color: '#0d0d0d', padding: 8 }}>{text.message}</Text>
+          <Text style={{ fontSize: 12, color: '#999999', marginRight: 10, marginBottom: 5, textAlign: 'right' }}>11:23 PM</Text>
+          </View>
+        </View>
+      )
+    }
     return (
-      <View>
-        <Text>{text.message}</Text>
-        <Text>{text.type}</Text>
+      <View style={{ alignItems: 'flex-start', marginTop: 5, marginRight: 40, marginBottom: 5 }}>
+        <View style={{ backgroundColor: '#bfbfbf', borderRadius: 10 }}>
+        <Text style={{ fontSize: 16, color: '#0d0d0d', padding: 8, elevation: 1 }}>{text.message}</Text>
+        <Text style={{ fontSize: 12, color: '#999999', marginLeft: 10, marginBottom: 5 }}>00:25 PM</Text>
+        </View>
       </View>
     )
   }
