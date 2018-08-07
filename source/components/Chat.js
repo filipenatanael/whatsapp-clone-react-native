@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import { View, Text, TextInput, Image, TouchableHighlight } from 'react-native';
-import { changeMessage, sendMessage } from '../actions/AppActions';
+import { changeMessage, sendMessage, userConversationFetch } from '../actions/AppActions';
 
 class Chat extends Component {
+
+  componentWillMount() {
+    this.props.userConversationFetch(this.props.contactEmail)
+  }
+
+
   /* Component Context */
   _sendMessage() {
     const { message, contactName, contactEmail } = this.props;
@@ -11,7 +18,6 @@ class Chat extends Component {
   }
 
   render(){
-    console.log(this.props);
     return (
       <View style={{ flex: 1, marginTop: 5, backgroundColor: '#eee4dc', padding: 10 }}>
 
@@ -38,9 +44,17 @@ class Chat extends Component {
 }
 
 mapStateToProps = state => {
+
+  const conversation = _.map(state.ListConversation, (val, uid) => {
+    return { ...val, uid };
+  })
+
+  console.log(conversation);
+
   return ({
+    conversation,
     message: state.AppReducer.message
   })
 }
 
-export default connect(mapStateToProps, { changeMessage, sendMessage })(Chat);
+export default connect(mapStateToProps, { changeMessage, sendMessage, userConversationFetch })(Chat);

@@ -125,12 +125,12 @@ const registerNewContactSuccess = dispatch => (
 
   export const userConversationFetch = contactEmail => {
     const { currentUser } = firebase.auth();
-    let userEmailB64 = base64.encode(currentUser.email);
-    let contactEmailB64 = base64.encode(contactEmail);
+    let user_email_encode = base64.encode(currentUser.email);
+    let contact_email_encode = base64.encode(contactEmail);
 
     return dispatch => {
-      firebase.database().ref(`/messages/${userEmailB64}/${contactEmailB64}`)
-      on('value', snapshot => {
+      firebase.database().ref(`/messages/${user_email_encode}/${contact_email_encode}`)
+      .on('value', snapshot => {
         dispatch({ type: type.LIST_CONVERSATION_USER, payload: snapshot.val() })
       })
     }
