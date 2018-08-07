@@ -81,6 +81,7 @@ const registerNewContactSuccess = dispatch => (
     })
 
   }
+
   export const sendMessage = (message, contactName, contactEmail) => {
     // User information
     const { currentUser } = firebase.auth();
@@ -116,6 +117,21 @@ const registerNewContactSuccess = dispatch => (
           set({ name: dataUser.name, name: userEmail })
         })
 
+      })
+    }
+  }
+
+  /* List Conversation */
+
+  export const userConversationFetch = contactEmail => {
+    const { currentUser } = firebase.auth();
+    let userEmailB64 = base64.encode(currentUser.email);
+    let contactEmailB64 = base64.encode(contactEmail);
+
+    return dispatch => {
+      firebase.database().ref(`/messages/${userEmailB64}/${contactEmailB64}`)
+      on('value', snapshot => {
+        dispatch({ type: type.LIST_CONVERSATION_USER, payload: snapshot.val() })
       })
     }
   }
