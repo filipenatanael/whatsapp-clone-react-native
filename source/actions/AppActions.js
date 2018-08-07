@@ -100,6 +100,22 @@ const registerNewContactSuccess = dispatch => (
         firebase.database().ref(`/messages/${contact_email_encode}/${user_email_encode}`)
         .push({ message: message, type: 'receive' })
         .then(() => dispatch({ type: 'SEND_MESSAGE' }))
+
+      }).then(() => { // Store header user conversations
+        firebase.database().ref(`/user_conversations/${user_email_encode}/${contact_email_encode}`)
+        .set({ name: contactName, email: contactEmail })
+      }).then(() => { // Store header contact conversations
+
+        firebase.database().ref(`/users/${user_email_encode}`)
+        .once('value')
+        .then(snapshot => {
+
+          const dataUser = _.first(_.values(snapshot.val()))
+
+          firebase.database().ref(`/user_conversations/${contact_email_encode}/${user_email_encode}`)
+          set({ name: dataUser.name, name: userEmail })
+        })
+
       })
     }
   }

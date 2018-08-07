@@ -19,7 +19,7 @@ class SignUpScreen extends Component {
 
   render() {
     return (
-      <ImageBackground source={require('../images/LogInBackground.jpg')} style={{ flex: 1, width: null }}>
+      <ImageBackground source={require('../images/LogInBackground.png')} style={{ flex: 1, width: null }}>
       <View style={styles.container}>
          <View style={styles.formGroup}>
 
