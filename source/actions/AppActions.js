@@ -63,8 +63,8 @@ const registerNewContactSuccess = dispatch => (
 
   export const fetchContacts = (emailLoggedIn) => {
     /* A solução sera ao carregar a aplicação, atualizar o emailLoggedIn  no AppReducer para que aplicação não quebre
-        devido ao componentWillMount tentar passar um valor inexistente, fazer um função que que buscar o currentUser e
-        da dispatch atualizando na store e deixar o email = ''... assim qunado tiver retorno atualizar os contatos
+    devido ao componentWillMount tentar passar um valor inexistente, fazer um função que que buscar o currentUser e
+    da dispatch atualizando na store e deixar o email = ''... assim qunado tiver retorno atualizar os contatos
     */
     return (dispatch) => {
       firebase.database().ref(`/users_of_contacts/${emailLoggedIn}`)
@@ -104,7 +104,7 @@ const registerNewContactSuccess = dispatch => (
       .then(() => {
         firebase.database().ref(`/messages/${contact_email_encode}/${user_email_encode}`)
         .push({ message: message, type: 'receive' })
-        .then(() => dispatch({ type: 'SEND_MESSAGE' }))
+        .then(() => dispatch({ type: type.SEND_MESSAGE_SUCCESS }))
 
       }).then(() => { // Store header user conversations
         firebase.database().ref(`/user_conversations/${user_email_encode}/${contact_email_encode}`)
@@ -125,8 +125,7 @@ const registerNewContactSuccess = dispatch => (
     }
   }
 
-  /* List Conversation */
-
+  /* Seatch conversation and return it to ListConversation reducer */
   export const userConversationFetch = contactEmail => {
     const { currentUser } = firebase.auth();
     let user_email_encode = base64.encode(currentUser.email);
