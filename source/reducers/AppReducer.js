@@ -18,6 +18,8 @@ export default (state = INITIAL_STATE, action) => {
         return { ...state, add_contact_status: action.payload, email_contact: '', add_contact_error: '' }
       case type.CHANGE_MESSAGE:
         return { ...state, message: action.payload }
+      case type.SEND_MESSAGE_SUCCESS:
+        return { ...state, message: '' }
      default:
         return state;
    }
