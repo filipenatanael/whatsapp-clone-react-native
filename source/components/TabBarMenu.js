@@ -21,14 +21,14 @@ class TabBarMenu extends Component {
           <Text style={{ color: 'white', fontSize: 18 }}>Whatsapp</Text>
           </View>
 
-          <View style={{ flexDirection: 'row', marginRight: 20 }}>
+          <View style={{ flexDirection: 'row', marginRight: 10 }}>
             <View style={{ width: 35, justifyContent: 'center' }}>
                 <TouchableOpacity onPress={() => { Actions.addContactScreen(); this.props.enableInclusionContact(); }}>
-                    <Image source={require('../images/ic_add_contact.png')} />
+                    <Image source={require('../images/ic_magnifying_glass.png')} />
                 </TouchableOpacity>
             </View>
             <View style={{ justifyContent: 'center' }}>
-                <Text style={{ fontSize: 18, color: 'white' }}>SingOut</Text>
+                <Image source={require('../images/ic_menu_application.png')} />
             </View>
             </View>
           </View>
