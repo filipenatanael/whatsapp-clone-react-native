@@ -22,7 +22,7 @@ class LoginScreen extends Component {
 
   render() {
     return (
-  <ImageBackground source={require('../images/LogInBackground.png')} style={{ flex: 1, width: null }}>
+  <ImageBackground source={require('../images/ic_log_in_background.png')} style={{ flex: 1, width: null }}>
       <View style={styles.container}>
          <View style={styles.title}>
             <Text style={styles.textTitle}>{ Strings.app_name }</Text>
