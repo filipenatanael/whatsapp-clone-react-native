@@ -4,7 +4,7 @@ import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
 
 import TabBarMenu from './TabBarMenu';
 import ChatScene from './ChatScene';
-import StatusScane from './StatusScene';
+import Status from './Status';
 import CallScane from './CallScane';
 
 const initialLayout = {
@@ -27,7 +27,7 @@ export default class MainScreen extends Component {
 
   _renderScene = SceneMap({
     first: ChatScene,
-    second: StatusScane,
+    second: Status,
     third: CallScane,
   });
 

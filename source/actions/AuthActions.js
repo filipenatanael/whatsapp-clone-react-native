@@ -3,26 +3,26 @@ import { AsyncStorage } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import base64 from 'base-64';
 
-import * as types from './Types';
+import * as type from '../resources/types';
 
 /*
 ActionCreator to manipulate InputText on (SignUpScreen)
 */
 export const addName = (name) => {
   return {
-    type: types.ADD_NAME,
+    type: type.ADD_NAME,
     payload: name
   }
 }
 export const addEmail = (email) => {
   return {
-    type: types.ADD_EMAIL,
+    type: type.ADD_EMAIL,
     payload: email
   }
 }
 export const addPassword = (password) => {
   return {
-    type: types.ADD_PASSWORD,
+    type: type.ADD_PASSWORD,
     payload: password
   }
 }
@@ -33,7 +33,7 @@ ActionCreator to signIn on application
 */
 export const SignIN = ({ email, password }) => {
   return dispatch => {
-    dispatch({ type: types.SIGN_IN_LOADING })
+    dispatch({ type: type.SIGN_IN_LOADING })
 
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then(response => {
@@ -46,11 +46,11 @@ export const SignIN = ({ email, password }) => {
 }
 
 const authSuccess = (dispatch) => {
-  dispatch({ type: types.AUTH_SUCCESS });
+  dispatch({ type: type.AUTH_SUCCESS });
   Actions.mainScreen();
 }
 const authUnsuccess = (error, dispatch) => {
-  dispatch({ type: types.AUTH_FAILURE, payload: error.code })
+  dispatch({ type: type.AUTH_FAILURE, payload: error.code })
 }
 
 /*
@@ -58,7 +58,7 @@ ActionCreator to create new user registration
 */
 export const registerUser = ({ name, email, password }) => {
   return dispatch => {
-    dispatch({ type: types.SIGN_UP_LOADING })
+    dispatch({ type: type.SIGN_UP_LOADING })
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(response => {
@@ -72,10 +72,10 @@ export const registerUser = ({ name, email, password }) => {
 }
 
 const registerSuccess = (dispatch) => {
-  dispatch({ type: types.SUCCESS_REGISTER });
+  dispatch({ type: type.SUCCESS_REGISTER });
   Actions.welcomeScreen();
 }
 
 const registerUnsuccess = (error, dispatch) => {
-  dispatch({ type: types.FAILURE_REGISTER, payload: error.code })
+  dispatch({ type: type.FAILURE_REGISTER, payload: error.code })
 }

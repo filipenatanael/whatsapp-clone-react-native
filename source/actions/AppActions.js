@@ -2,7 +2,7 @@ import firebase from 'firebase';
 import base64 from 'base-64';
 import _ from 'lodash';
 
-import * as type from './Types';
+import * as type from '../resources/types';
 
 /* added to redux */
 export const addContact = (email) => {
