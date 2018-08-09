@@ -1,4 +1,4 @@
-import * as type from '../actions/Types';
+import * as type from './../resources/types';
 
 const INITIAL_STATE = {}
 

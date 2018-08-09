@@ -1,5 +1,5 @@
 import * as Constants from '../resources/constants';
-import * as types from '../actions/Types';
+import * as type from '../resources/types';
 
 const INITIAL_STATE = {
   name: '',
@@ -12,13 +12,13 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case types.ADD_EMAIL:
+    case type.ADD_EMAIL:
     return { ...state, email: action.payload }
-    case types.ADD_PASSWORD:
+    case type.ADD_PASSWORD:
     return { ...state, password: action.payload }
-    case types.ADD_NAME:
+    case type.ADD_NAME:
     return { ...state, name: action.payload }
-    case types.FAILURE_REGISTER:
+    case type.FAILURE_REGISTER:
     switch (action.payload)
     {
       case 'auth/email-already-in-use':
@@ -32,11 +32,11 @@ export default (state = INITIAL_STATE, action) => {
       default:
       return { ...state, message: Constants.undefined_register_error, signUpLoading: false }
     }
-    case types.SUCCESS_REGISTER:
+    case type.SUCCESS_REGISTER:
     return { ...state, name: '' }
-    case types.AUTH_SUCCESS:
+    case type.AUTH_SUCCESS:
     return { ...state, email: '', password: '' }
-    case types.AUTH_FAILURE:
+    case type.AUTH_FAILURE:
     switch (action.payload)
     {
       case 'auth/invalid-email':
@@ -50,9 +50,9 @@ export default (state = INITIAL_STATE, action) => {
       default:
       return { ...state, message: Constants.undefined_register_error, signInLoading: false }
     }
-    case types.SIGN_IN_LOADING:
+    case type.SIGN_IN_LOADING:
     return { ...state, signInLoading: true }
-    case types.SIGN_UP_LOADING:
+    case type.SIGN_UP_LOADING:
     return { ...state, signUpLoading: true }
     default:
     return state;

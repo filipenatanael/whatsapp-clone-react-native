@@ -1,7 +1,6 @@
-import * as type from '../actions/Types';
+import * as type from './../resources/types';
 
 const INITIAL_STATE = {}
-
 
 export default(state = INITIAL_STATE, action) => {
   switch (action.type) {
