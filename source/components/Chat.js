@@ -24,6 +24,9 @@ class Chat extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (this.props.contactEmail != nextProps.contactEmail) {
+      this.props.userConversationFetch(nextProps.contactEmail);
+    }
     this.createDataSource(nextProps.conversation);
   }
 
