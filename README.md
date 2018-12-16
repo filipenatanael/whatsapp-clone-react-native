@@ -2,6 +2,10 @@
 
 This is an open-source project
 
+### Demo:
+
+![alt text](https://raw.githubusercontent.com/filipenatanael/images-in-readme/master/Whatsapp-clone-react-native/whatsappClone.jpg)
+
 ### Stack:
 
 - Firebase
@@ -9,10 +13,6 @@ This is an open-source project
 - Redux
 - Redux Thunk
 - React Native Router Flux
-
-### Demo:
-
-![alt text](https://raw.githubusercontent.com/filipenatanael/images-in-readme/master/Whatsapp-clone-react-native/whatsappClone.jpg)
 
 ### How to run it:
 ```
