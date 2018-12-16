@@ -1,8 +1,8 @@
-# WhatsApp Clone Using React Native
+# :iphone: WhatsApp Clone Using React Native
 
 This is an open-source project
 
-### Stack
+### Stack:
 
 - Firebase
 - React Native
@@ -10,11 +10,11 @@ This is an open-source project
 - Redux Thunk
 - React Native Router Flux
 
-### Demo
+### Demo:
 
 ![alt text](https://raw.githubusercontent.com/filipenatanael/images-in-readme/master/Whatsapp-clone-react-native/whatsappClone.jpg)
 
-### How to run it
+### How to run it:
 ```
 git clone git@github.com:filipenatanael/Whatsapp-clone-react-native.git
 cd Whatsapp-clone-react-native
