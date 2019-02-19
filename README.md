@@ -1,23 +1,24 @@
-# :iphone: WhatsApp Clone Using React Native
+<p align="center"><a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="https://i.ibb.co/DKKn11n/clone-copy-document.png" alt="My Reads"></a></p>
 
+<h1 align="center">WhatsApp Clone Using React Native</h1>
+
+<p align="center">
 This is an open source clone of whatsapp using the react-native library maintained by facebook, the goal of this project is to build an application exactly like the original application, however using a different technical approach. This project is not for profit and is used only as an object of study on development.
 
-### Demo:
+<h5>Stack Project:</h5>
+<i>React Native, Redux, Redux Thunk, React Native Router Flux, Firebase</i>
+</p>
 
-![alt text](https://raw.githubusercontent.com/filipenatanael/images-in-readme/master/Whatsapp-clone-react-native/whatsappClone.jpg)
+<hr />
 
-### Stack:
+<p align="center">
+  <img src="https://i.ibb.co/Ss7FJ1s/whatsapp-Print-Screen.jpg" alt="WhatsApp clone print screen" border="0">
+</p>
 
-- Firebase
-- React Native
-- Redux
-- Redux Thunk
-- React Native Router Flux
-
-### How to run it:
+### Running
 ```
 git clone git@github.com:filipenatanael/Whatsapp-clone-react-native.git
 cd Whatsapp-clone-react-native
 npm install
-react-native run-android
+react-native run-android or react-native run-ios
 ```
