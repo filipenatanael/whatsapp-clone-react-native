@@ -1,0 +1,8 @@
+export const config = {
+  apiKey: "YOUR-FIREBASE-API-KEY",
+  authDomain: "YOUR-FIREBASE-DOMAIN",
+  databaseURL: "YOUR-FIREBASE-DATABASE",
+  projectId: "YOUR-FIREBASE-PROJECT-ID",
+  storageBucket: "YOUR-FIREBASE-STORAGE",
+  messagingSenderId: "YOUR-FIREBASE-MASSAGING"
+}

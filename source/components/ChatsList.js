@@ -6,35 +6,41 @@ import { Actions } from 'react-native-router-flux';
 import { View, Text, ListView, Image, TouchableHighlight } from 'react-native';
 
 import { connect } from 'react-redux';
-import { fetchContacts } from  '../actions/AppActions';
+import {
+  fetchAllChats
+ } from  '../actions/AppActions';
 
-class CallScane extends Component {
+class ChatsList extends Component {
 
   componentWillMount() {
-    this.props.fetchContacts(base64.encode(this.props.email_logged_in));
-    this.createDataSource(this.props.contacts);
+    this.props.fetchAllChats(base64.encode(this.props.email_logged_in));
+    this.createDataSource(this.props.chatsList);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.createDataSource(nextProps.contacts);
+    this.createDataSource(nextProps.chatsList);
   }
 
-  createDataSource(contacts) {
+  createDataSource(chatsList) {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 })
-    this.dataSource = ds.cloneWithRows(contacts)
+    this.dataSource = ds.cloneWithRows(chatsList)
     // (this.dataSource) CallScane.prototype.dataSource (example)
   }
 
-  renderRow(contact) {
+  renderRow(chatContent) {
     return (
       <TouchableHighlight
-        onPress={ () => Actions.chat({ title: contact.name, contactName: contact.name, contactEmail: contact.email }) }
+        onPress={ () => Actions.chat({
+          title: chatContent.name,
+          contactName: chatContent.name,
+          contactEmail: chatContent.email
+        }) }
       >
       <View style={{ flex: 1,  flexDirection: 'row', padding: 15, borderBottomWidth: 1, borderColor: "#b7b7b7" }}>
-        <Image source={{uri: contact.profileImage }} style={{ width: 50, height: 50, borderRadius: 50 }} />
+        <Image source={{uri: chatContent.profileImage }} style={{ width: 50, height: 50, borderRadius: 50 }} />
           <View style={{ marginLeft: 15 }}>
-            <Text style={{ fontSize: 23, fontWeight: 'bold' }}>{ contact.name }</Text>
-            <Text style={{ fontSize: 13 }}>{ contact.email }</Text>
+            <Text style={{ fontSize: 23, fontWeight: 'bold' }}>{ chatContent.name }</Text>
+            <Text style={{ fontSize: 13 }}>{ chatContent.lastMessage }</Text>
           </View>
       </View>
       </TouchableHighlight>
@@ -53,14 +59,10 @@ class CallScane extends Component {
 }
 
 mapStateToProps = state => {
-  const contacts = _.map(state.ListContactsReducer, (value, uid) => {
-    return { ...value, uid }
-  });
-
   return {
     email_logged_in: state.AppReducer.email_logged_in,
-    contacts: contacts
+    chatsList: state.ListChatsReducer
   }
 }
 
-export default connect(mapStateToProps, { fetchContacts })(CallScane);
+export default connect(mapStateToProps, { fetchAllChats })(ChatsList);

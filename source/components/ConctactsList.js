@@ -8,7 +8,7 @@ import { View, Text, ListView, Image, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchContacts } from  '../actions/AppActions';
 
-class CallScane extends Component {
+class ContactsList extends Component {
 
   componentWillMount() {
     this.props.fetchContacts(base64.encode(this.props.email_logged_in));
@@ -63,4 +63,4 @@ mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { fetchContacts })(CallScane);
+export default connect(mapStateToProps, { fetchContacts })(ContactsList);
