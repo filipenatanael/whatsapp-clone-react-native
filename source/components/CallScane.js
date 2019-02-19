@@ -1,8 +1,8 @@
-import firebase from 'firebase';
 import React, { Component } from 'react';
-import { Actions } from 'react-native-router-flux';
+import firebase from 'firebase';
 import base64 from 'base-64';
 import _ from 'lodash';
+import { Actions } from 'react-native-router-flux';
 import { View, Text, ListView, Image, TouchableHighlight } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -44,9 +44,9 @@ class CallScane extends Component {
   render() {
     return (
       <ListView
-      enableEmptySections
-      dataSource={this.dataSource}
-      renderRow={data => this.renderRow(data)}
+        enableEmptySections
+        dataSource={this.dataSource}
+        renderRow={data => this.renderRow(data)}
     />
   );
 }
