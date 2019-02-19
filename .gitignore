@@ -53,3 +53,5 @@ buck-out/
 */fastlane/screenshots
 
 source/resources/MyFirebaseSettings.js
+
+source/resources/FirebaseSettings.js
