@@ -7,7 +7,7 @@ import ReduxThunk from 'redux-thunk';
 import Routes from './Routes';
 import reducers from './reducers/index';
 
-import { config } from './resources/MyFirebaseSettings';
+import { config } from './resources/FirebaseSettings';
 
 export default class App extends Component<{}> {
   componentWillMount() {
