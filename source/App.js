@@ -6,7 +6,6 @@ import ReduxThunk from 'redux-thunk';
 
 import Routes from './Routes';
 import reducers from './reducers/index';
-
 import { config } from './resources/FirebaseSettings';
 
 export default class App extends Component<{}> {
@@ -22,19 +21,3 @@ export default class App extends Component<{}> {
     );
   }
 }
-
-
-
-/*
-<Provider store={createStore(combineReducers({
-   AuthReducer: _AuthReducer,
-   reducer2: () => []
-})
-)}>
-
--- AuthReducer.js
-
-export default (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case 'ADD_EMAIL':
-*/
