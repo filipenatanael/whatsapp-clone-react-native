@@ -1,13 +1,18 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import ChatsList from './ChatsList'
+import TabBarMenu from './TabBarMenu'
 
 export default props => (
   <View style={styles.container}>
-  <ChatsList />
+  
+    {/* List of chasts */}
+    <ChatsList />
+
     <View>
-      <TouchableOpacity activeOpacity={0.5} onPress={() => alert('Clicked!!')} style={styles.touchableOpacityStyle} >
+      <TouchableOpacity activeOpacity={0.5} onPress={() => Actions.selectContact() } style={styles.touchableOpacityStyle} >
         <Image source={require('../images/ic_chats_contacts.png')} style={styles.floatingButtonStyle} />
       </TouchableOpacity>
     </View>

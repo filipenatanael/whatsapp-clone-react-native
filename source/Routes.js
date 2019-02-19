@@ -8,6 +8,7 @@ import MainScreen from './components/MainScreen';
 import WelcomeScreen from './components/WelcomeScreen';
 import AddContactScreen from './components/AddContactScreen';
 import Chat from './components/Chat';
+import SelectContact from './components/SelectContact';
 
 export default class Routes extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ componentWillMount() {
           <Scene key='welcomeScreen' component={WelcomeScreen} title="WelcomeScreen" />
           <Scene key='addContactScreen' component={AddContactScreen} title="Add Contact" />
           <Scene key='chat' component={Chat} title="Chat" hideNavBar={false} />
+          <Scene key='selectContact' component={SelectContact} title="Select contact" hideNavBar={false} />
         </Scene>
       </Router>
     )

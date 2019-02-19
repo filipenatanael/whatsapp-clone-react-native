@@ -27,16 +27,20 @@ class ChatsList extends Component {
     // (this.dataSource) CallScane.prototype.dataSource (example)
   }
 
-  renderRow(contact) {
+  renderRow(chatContent) {
     return (
       <TouchableHighlight
-        onPress={ () => Actions.chat({ title: contact.name, contactName: contact.name, contactEmail: contact.email }) }
+        onPress={ () => Actions.chat({
+          title: chatContent.name,
+          contactName: chatContent.name,
+          contactEmail: chatContent.email
+        }) }
       >
       <View style={{ flex: 1,  flexDirection: 'row', padding: 15, borderBottomWidth: 1, borderColor: "#b7b7b7" }}>
-        <Image source={{uri: contact.profileImage }} style={{ width: 50, height: 50, borderRadius: 50 }} />
+        <Image source={{uri: chatContent.profileImage }} style={{ width: 50, height: 50, borderRadius: 50 }} />
           <View style={{ marginLeft: 15 }}>
-            <Text style={{ fontSize: 23, fontWeight: 'bold' }}>{ contact.name }</Text>
-            <Text style={{ fontSize: 13 }}>{ contact.email }</Text>
+            <Text style={{ fontSize: 23, fontWeight: 'bold' }}>{ chatContent.name }</Text>
+            <Text style={{ fontSize: 13 }}>{ chatContent.lastMessage }</Text>
           </View>
       </View>
       </TouchableHighlight>
