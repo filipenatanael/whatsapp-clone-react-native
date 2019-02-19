@@ -6,11 +6,11 @@ import {
   ADD_CONTACT,
   ADD_NEW_CONTACT_ERROR,
   ADD_NEW_CONTACT_SUCCESS,
-  ADD_CONTACT_SUCCESS,
   CONTACTS_LIST,
   CHANGE_MESSAGE,
   SEND_MESSAGE_SUCCESS,
-  LIST_CONVERSATION_USER
+  LIST_CONVERSATION_USER,
+  FETCH_ALL_CHATS,
 } from '../resources/types';
 
 /* added to redux */
@@ -80,21 +80,68 @@ export const sendMessage = (message, contactName, contactEmail) => {
     }).then(() => {
       // Store header user conversations
       firebase.database().ref(`/user_conversations/${user_email_encode}/${contact_email_encode}`)
-      .set({ name: contactName, email: contactEmail })
+      .set({
+        name: contactName,
+        email: contactEmail,
+        lastMessage: message
+      })
     }).then(() => {
       // Store header contact conversations
       firebase.database().ref(`/users/${user_email_encode}`).once('value')
       .then(snapshot => {
         const dataUser = _.first(_.values(snapshot.val()))
         firebase.database().ref(`/user_conversations/${contact_email_encode}/${user_email_encode}`)
-        set({ name: dataUser.name, name: userEmail })
+        .set({
+          name: dataUser.name,
+          email: userEmail,
+          lastMessage: message
+        })
+      })
+    })
+  }
+}
+
+export const fetchAllChats = currentUserEmail => {
+  return dispatch => {
+    firebase.database().ref(`/user_conversations/${currentUserEmail}`)
+    .on('value', user_conversations => {
+      firebase.database().ref(`/users_of_contacts/${currentUserEmail}`)
+      .on("value", users_of_contacts => {
+
+        const contacts = _.map(users_of_contacts.val(), (value, uid) => {
+          return { ...value, uid }
+        });
+
+        const conversations = _.map(user_conversations.val(), (value, uid) => {
+          return { ...value, uid }
+        });
+
+        let array_merged = []
+        let count = 0;
+        let i=0;
+        let y=0;
+
+        for(i=0; i < conversations.length; i++) {
+          for(y=0; y < contacts.length; y++) {
+            if (conversations[i].email == contacts[y].email) {
+              array_merged[count] = { ...conversations[i], ...contacts[y] }
+              count++
+            }
+          }
+        }
+
+        dispatch({
+          type: FETCH_ALL_CHATS,
+          payload: array_merged
+        });
+
       })
     })
   }
 }
 
 /* Seatch conversation and return it to ListConversation reducer */
-export const userConversationFetch = contactEmail => {
+export const fetchMessages = contactEmail => {
   const { currentUser } = firebase.auth();
   let user_email_encode = base64.encode(currentUser.email);
   let contact_email_encode = base64.encode(contactEmail);
@@ -126,7 +173,7 @@ const registerNewContactSuccess = dispatch => (
 
 export const enableInclusionContact = () => (
   {
-    type: ADD_CONTACT_SUCCESS,
+    type: ADD_NEW_CONTACT_SUCCESS,
     payload: false
   }
 )

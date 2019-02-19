@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { View, Text, TextInput, Image, TouchableHighlight, ListView } from 'react-native';
-import { changeMessage, sendMessage, userConversationFetch } from '../actions/AppActions';
+import { changeMessage, sendMessage, fetchMessages } from '../actions/AppActions';
 
 class Chat extends Component {
 
   componentWillMount() {
-    this.props.userConversationFetch(this.props.contactEmail);
+    this.props.fetchMessages(this.props.contactEmail);
     this.createDataSource(this.props.conversation);
   }
 
@@ -25,7 +25,7 @@ class Chat extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (this.props.contactEmail != nextProps.contactEmail) {
-      this.props.userConversationFetch(nextProps.contactEmail);
+      this.props.fetchMessages(nextProps.contactEmail);
     }
     this.createDataSource(nextProps.conversation);
   }
@@ -98,4 +98,4 @@ mapStateToProps = state => {
   })
 }
 
-export default connect(mapStateToProps, { changeMessage, sendMessage, userConversationFetch })(Chat);
+export default connect(mapStateToProps, { changeMessage, sendMessage, fetchMessages })(Chat);
