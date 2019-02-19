@@ -12,7 +12,7 @@ This is an open source clone of whatsapp using the react-native library maintain
 <hr />
 
 <p align="center">
-  <img src="https://i.ibb.co/Ss7FJ1s/whatsapp-Print-Screen.jpg" alt="WhatsApp clone print screen" border="0">
+  <img src="https://i.ibb.co/263MT5s/whatsapp-Print-Screen.jpg" alt="WhatsApp clone print screen" border="0">
 </p>
 
 ### Running
