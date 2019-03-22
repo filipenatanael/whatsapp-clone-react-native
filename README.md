@@ -152,3 +152,11 @@ export const config = {
 
 
 ```
+
+### References
+
+- [React Native Docs](https://facebook.github.io/react-native/docs/getting-started.html)
+- [Firebase](https://firebase.google.com/?hl=pt-br)
+- [WhatsApp Messenger](https://play.google.com/store/apps/details?id=com.whatsapp&hl=pt_BR)
+- [Redux Thunk](https://github.com/reduxjs/redux-thunk)
+- [Community - Android Developers](https://developer.android.com/support)
