@@ -104,7 +104,7 @@ export const config = {
     },
 	"anVsaWFuYUBleGFtcGxlLmNvbQ==" : {
       "ZmlsaXBlbmF0YW5hZWwxQGxpdmUuY29t" : {
-        "email" : "filipenatanael1@live.com",
+        "email" : "example@example.com",
         "lastMessage" : "I'm leaving home now",
         "name" : "Filipe Natanael"
       }
