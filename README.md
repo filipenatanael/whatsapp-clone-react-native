@@ -142,7 +142,7 @@ export const config = {
     },
     "anVsaWFuYUBleGFtcGxlLmNvbQ==": {
       "-LJHjLeuvZrC-GTIEL_3" : {
-        "email" : "filipenatanael1@live.com",
+        "email" : "example@example.com",
         "name" : "Filipe Natanael",
         "profileImage" : "https://bootdey.com/img/Content/avatar/avatar5.png"
       }
